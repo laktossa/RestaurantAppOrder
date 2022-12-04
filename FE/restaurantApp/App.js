@@ -6,8 +6,8 @@ import OrderScreen from "./src/Screens/OrderScreen";
 export default function App() {
   return (
     <Provider store={store}>
-      {/* <MainStack /> */}
-      <OrderScreen />
+      <MainStack />
+      {/* <OrderScreen /> */}
     </Provider>
   );
 }

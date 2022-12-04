@@ -9,16 +9,16 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { currencyFormat } from "simple-currency-format";
 import Card from "../components/Card";
-import { getMenuList, offLoading } from "../store/slicerOrder";
+import { BASE_URL, getMenuList, offLoading } from "../store/slicerOrder";
 
 export default HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { countBasket, totalPrice, menu, loading, burger } = useSelector(
-    (state) => state.order
-  );
+  const { countBasket, totalPrice, menu, loading, loadingScreen, burger } =
+    useSelector((state) => state.order);
   const [menus, setMenus] = useState(menu);
   const [category, setCategory] = useState("");
   const [padding, setPadding] = useState({ paddingTop: 10, paddingBottom: 0 });
@@ -39,6 +39,16 @@ export default HomeScreen = ({ navigation }) => {
   }, [countBasket]);
 
   useEffect(() => {
+    const wait = async () => {
+      try {
+        let { data } = await axios.get(`${BASE_URL}/menu`);
+        let first = data.filter((e) => e.category === "burger");
+        setMenus(first);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    wait();
     dispatch(getMenuList());
   }, []);
 
@@ -48,11 +58,15 @@ export default HomeScreen = ({ navigation }) => {
   }, [category]);
 
   useEffect(() => {
-    if (!loading) {
-      setMenus(burger);
+    if (loadingScreen) {
+      if (category === "burger") {
+        setCategory("chicken");
+      } else {
+        setCategory("burger");
+      }
     }
     dispatch(offLoading());
-  }, [loading]);
+  }, [loadingScreen]);
 
   return (
     <>

@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-let BASE_URL = "https://fb19-112-78-128-226.ap.ngrok.io";
+export const BASE_URL =
+  "https://21d2-2001-448a-2020-f686-cd6-ed7e-6c0f-2cf.ap.ngrok.io";
 
 export const getMenuList = createAsyncThunk("getMenuList", async () => {
   try {
@@ -16,11 +17,9 @@ const orderSlicer = createSlice({
   name: "order",
   initialState: {
     loading: false,
+    loadingScreen: false,
     menu: [],
     burger: [],
-    chicken: [],
-    drink: [],
-    iceCream: [],
     basket: [],
     countBasket: 0,
     totalPrice: 0,
@@ -51,10 +50,10 @@ const orderSlicer = createSlice({
       }
     },
     onLoading: (state) => {
-      state.loading = true;
+      state.loadingScreen = true;
     },
     offLoading: (state) => {
-      state.loading = false;
+      state.loadingScreen = false;
     },
   },
   extraReducers: (builder) => {
@@ -63,8 +62,8 @@ const orderSlicer = createSlice({
     });
     builder.addCase(getMenuList.fulfilled, (state, data) => {
       let item = data.payload;
-      state.menu = item;
       state.burger = item.filter((e) => e.category === "burger");
+      state.menu = item;
       state.loading = false;
     });
   },
