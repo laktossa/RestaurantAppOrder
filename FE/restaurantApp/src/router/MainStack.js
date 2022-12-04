@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StatusBar, Text } from "react-native";
+import { StatusBar } from "react-native";
 import CartScreen from "../Screens/CartScreen";
 import HomeScreen from "../Screens/HomeScreen";
 
