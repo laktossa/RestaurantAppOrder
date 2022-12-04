@@ -21,7 +21,11 @@ export default MainStack = () => {
           component={CartScreen}
           options={{ animation: "slide_from_bottom", headerShown: false }}
         />
-        <Stack.Screen name="OrderScreen" component={OrderScreen} />
+        <Stack.Screen
+          name="OrderScreen"
+          component={OrderScreen}
+          options={{ animation: "simple_push", headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
