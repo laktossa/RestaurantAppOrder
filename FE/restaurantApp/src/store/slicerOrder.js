@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { FlatList } from "react-native";
 
-let BASE_URL = "https://05bf-158-140-191-40.ap.ngrok.io";
+let BASE_URL = "https://fb19-112-78-128-226.ap.ngrok.io";
 
 export const getMenuList = createAsyncThunk("getMenuList", async () => {
   try {

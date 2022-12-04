@@ -46,7 +46,10 @@ export default CartScreen = ({ navigation: { navigate } }) => {
         </View>
         <View className="h-[50%] w-full">
           <View className="flex-row h-full mx-4 bg-primary rounded-full justify-center">
-            <TouchableOpacity className="w-[70%]  bg-secondary justify-center items-center rounded-full">
+            <TouchableOpacity
+              className="w-[70%]  bg-secondary justify-center items-center rounded-full"
+              onPress={() => navigate("OrderScreen")}
+            >
               <Text className="font-bold text-3xl text-white ">Order</Text>
             </TouchableOpacity>
           </View>
